@@ -1,56 +1,138 @@
 
+const buttonRock = document.querySelector('.rock');
+const buttonPaper = document.querySelector('.paper');
+const buttonScissors = document.querySelector('.scissors');
+const userPlayer = document.querySelector('.userPlayer');
+const userPoints = document.querySelector('.userPoints');
+const computerPoints = document.querySelector('.computerPoints');
+const winner = document.querySelector('.winner');
 
-/*3 )Your game is going to play against the computer, so begin with a function called getComputerChoice that will randomly return either ‘Rock’, ‘Paper’ or ‘Scissors’. 
-We’ll use this function in the game to make the computer’s play. 
-Tip: use the console to make sure this is returning the expected output before moving to the next step!*/
-
-/* Get random Computer Selection from Rock Papper Scissors array*/
-
-
-playerSelection = prompt(`Rock, Paper or Scissors?`)
-while (playerSelection !== `Rock`  &&  playerSelection !== `Paper` && playerSelection !== `Scissors`) {
-    alert (`Please select Rock, Paper or Scissors`)
-    playerSelection = prompt(`Rock, Paper or Scissors?`)
-} 
-
-
-options = ["Rock", "Paper", "Scissors"];
-function getComputerSelection(){
+options = ["Rock", "Paper", "Scissors"]; /* Computer selection from preestablished array*/ 
+function getComputerSelection() {
     computerSelection = options[Math.floor(Math.random()*options.length)]
-    console.log(computerSelection)
 }
 
+let userScore = 0 
+let computerScore = 0 /* Game starts 0-0*/   
 
-/* 4 Write a function that plays a single round of Rock Paper Scissors. The function should take two parameters - the playerSelection and computerSelection - 
-and then return a string that declares the winner of the round like so: "You Lose! Paper beats Rock"
+buttonRock.addEventListener('click', function() {
+    playerSelection = (buttonRock.innerText)
+    round();
+    console.log(`${userScore} - ${computerScore}`);
+    userPoints.innerText = userScore;
+    computerPoints.innerText = computerScore;
+    if (userScore > 4) {
+        winner.innerText = 'You WIN!'        
+    }
+    if (computerScore > 4) {
+        winner.innerText = 'You Lose!'        
+    }
+    
+});
 
-Make your function’s playerSelection parameter case-insensitive (so users can input rock, ROCK, RocK or any other variation).
-*/
+
+buttonPaper.addEventListener('click', function() {
+    playerSelection = (buttonPaper.innerText)
+    round();
+    console.log(`${userScore} - ${computerScore}`);
+    userPoints.innerText = userScore;
+    computerPoints.innerText = computerScore;
+    if (userScore > 4) {
+        winner.innerText = 'You WIN!'      
+    }
+    if (computerScore > 4) {
+        winner.innerText = 'You Lose!'        
+    }
+    
+    
+});
 
 
-function round(playerSelection,computerSelection){
+buttonScissors.addEventListener('click', function() {
+    playerSelection = (buttonScissors.innerText)
+    round();
+    console.log(`${userScore} - ${computerScore}`);
+    userPoints.innerText = userScore;
+    computerPoints.innerText = computerScore;
+    if (userScore > 4) {
+        winner.innerText = 'You WIN!'        
+    }
+    if (computerScore > 4) {
+        winner.innerText = 'You Lose!'        
+    }
+    
+});
+
+
+
+
+
+//function getPlayerSelection() {
+//playerSelection = prompt(`Rock, Paper or Scissors?`) /* Player selection from prompt*/ 
+//while (playerSelection !== `Rock`  &&  playerSelection !== `Paper` && playerSelection !== `Scissors`) {
+  //  alert (`Please select Rock, Paper or Scissors`)
+  //  playerSelection = prompt(`Rock, Paper or Scissors?`)
+//}
+//} 
+
+
+
+//function game() {
+  //  for (let i = 0; i < 5; i++) {
+    //    round();
+      //  console.log(`User has ${userScore} points and Computer has ${computerScore} points`)
+
+//}
+//}
+
+
+
+
+function round() { 
+
+    getComputerSelection();
 
     if (playerSelection === computerSelection) {
         return `It's a tie!`;
 
     } else if ((playerSelection == "Rock") && ( computerSelection == "Scissors")) {
-        return `You win! ${playerSelection} beats ${computerSelection}.`
+        userScore++;
+        return `You win! ${playerSelection} beats ${computerSelection}.`;
+        console.log(`User has ${userScore} points`);
+        console.log(`Computer has ${computerScore} points`);
 
     } else if ((playerSelection == "Scissors") && ( computerSelection == "Paper")) {
-        return `You win! ${playerSelection} beats ${computerSelection}.`  
+        userScore++;
+        return `You win! ${playerSelection} beats ${computerSelection}.`;
+        console.log(`User has ${userScore} points`);
+        console.log(`Computer has ${computerScore} points`);
 
     } else if ((playerSelection == "Paper") && ( computerSelection == "Rock")) {
-        return `You win! ${playerSelection} beats ${computerSelection}.`
+        userScore++;
+        return `You win! ${playerSelection} beats ${computerSelection}.`;
+        console.log(`User has ${userScore} points`);
+        console.log(`Computer has ${computerScore} points`);
 
     } else if ((playerSelection == "Rock") && ( computerSelection == "Paper")) {
-        return `You lose! ${computerSelection} beats ${playerSelection}.`
+        computerScore++;
+        return `You lose! ${computerSelection} beats ${playerSelection}.`;
+        console.log(`User has ${userScore} points`);
+        console.log(`Computer has ${computerScore} points`);
 
     } else if ((playerSelection == "Paper") && ( computerSelection == "Scissors")) {
-        return `You lose! ${computerSelection} beats ${playerSelection}.`
+        computerScore++;
+        return `You lose! ${computerSelection} beats ${playerSelection}.`;
+        console.log(`User has ${userScore} points`);
+        console.log(`Computer has ${computerScore} points`);
 
     } else if ((playerSelection == "Scissors") && ( computerSelection == "Rock")) {
-        return `You lose! ${computerSelection} beats ${playerSelection}.`
+        computerScore++;
+        return `You lose! ${computerSelection} beats ${playerSelection}.`;
+        console.log(`User has ${userScore} points`);
+        console.log(`Computer has ${computerScore} points`);
     }
+
+
 }
 
 
